@@ -188,7 +188,6 @@ main {
   width: 750px;
   height: 570px;
   min-width: 100px;
-
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.01);
   backdrop-filter: blur(20px);
@@ -209,6 +208,36 @@ main {
   gap: 10px;
 }
 
+@media (max-width: 769px) {
+  main {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 481px) {
+  main {
+    grid-template-areas:
+      "header header"
+      "members members"
+      "posts posts"
+      "input button";
+
+    grid-template-rows: 60px 70px 1fr auto;
+  }
+  header ul {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 25px 5px;
+  }
+  header ul li {
+    font-size: 1.3em;
+  }
+}
+
 /****** HEADER ******/
 
 header {
@@ -221,7 +250,7 @@ header ul {
   flex-direction: row;
   align-items: center;
   margin-left: auto;
-  font-size: 0.9em;
+  font-size: 1em;
   gap: 20px;
   cursor: pointer;
 }
@@ -237,6 +266,8 @@ header ul li:nth-child(2) {
 
 header li {
   transition: transform 0.3s ease-in;
+  display: flex;
+  align-items: center;
 }
 
 header li:hover {
