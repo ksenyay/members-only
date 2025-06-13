@@ -9,55 +9,10 @@
 </head>
 <body>
     <main>
-        <header>
-            <ul>
-                <li>LOGO</li>
-                <% if (subscribed === true) { %>
-                    <li>My Posts</li>
-                    <li><img src="/logout.png" alt="Logout Icon"></li>
-                <% } %>
-            </ul>
-        </header>
-
-        <div class="posts">
-           <% postData.forEach((item) => { %>
-                <div class="post">
-                    <h2><%= item.title %></h2>
-                    <div class="author">
-                        <p><%= item.username %></p>
-                        <p><%= item.posted %></p>
-                    </div>
-                    <p class="content"><%= item.description %></p>
-                    <div class="like">
-                        <img src="/heart.png" alt="" />
-                        <p><%= item.likes %></p>
-                    </div>
-                </div>  
-            <% }) %>
-        </div>
-        
-        <div class="members">
-
-        </div>
-
-        <% if (subscribed === true) { %>
-
-            <div class="input-container">
-                <input type="text" placeholder="Write a message...">
-            </div>
-
-            <div class="button-container">
-                <button>Post</button>
-            </div>
-        <% } else { %>
-            <div class="subscribe-message-container">
-                <span>Only subscribers can post. Please subscribe for free</span>
-            </div>
-
-            <div class="subscribe-container">
-                <button>Subscribe</button>
-            </div>
-        <% } %>
+        <%- include('./partials/header') %>
+        <%- include('./partials/posts') %>
+        <%- include('./partials/members') %>
+        <%- include('./partials/message') %>
     </main>
 </body>
 </html>

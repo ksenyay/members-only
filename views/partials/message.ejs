@@ -1,0 +1,17 @@
+<% if (subscribed === true) { %>
+    <div class="input-container">
+        <input type="text" placeholder="Write a message...">
+    </div>
+
+    <div class="button-container">
+        <button>Post</button>
+    </div>
+<% } else { %>
+    <div class="subscribe-message-container">
+        <span>Only subscribers can post. Please subscribe for free</span>
+    </div>
+
+    <div class="subscribe-container">
+        <button>Subscribe</button>
+    </div>
+<% } %>

@@ -1,0 +1,16 @@
+<div class="posts">
+    <% postData.forEach((item) => { %>
+        <div class="post">
+            <h2><%= item.title %></h2>
+            <div class="author">
+                <p><%= item.username %></p>
+                <p><%= item.posted %></p>
+            </div>
+            <p class="content"><%= item.description %></p>
+            <div class="like">
+                <img src="/heart.png" alt="" />
+                <p><%= item.likes %></p>
+            </div>
+        </div>  
+    <% }) %>
+</div>
