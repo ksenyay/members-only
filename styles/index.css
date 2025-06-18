@@ -1,7 +1,14 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+/* FONTS */
+
+@import url("https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap");
+
+.sixtyfour {
+  font-family: "Sixtyfour", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "BLED" 0, "SCAN" 0;
+}
 
 /* Set border-box on all elements */
 *,
@@ -185,8 +192,8 @@ body {
 }
 
 main {
-  width: 750px;
-  height: 570px;
+  width: 900px;
+  height: 700px;
   min-width: 100px;
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.01);
@@ -217,24 +224,17 @@ main {
   }
 }
 
-@media (max-width: 481px) {
+@media (max-width: 769px) {
   main {
     grid-template-areas:
       "header header"
       "members members"
       "posts posts"
-      "input button";
+      "input input"
+      "button button";
 
-    grid-template-rows: 60px 70px 1fr auto;
-  }
-  header ul {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding: 25px 5px;
-  }
-  header ul li {
-    font-size: 1.3em;
+    grid-template-rows: 80px 70px 1fr 70px 70px;
+    gap: 0;
   }
 }
 
@@ -242,7 +242,7 @@ main {
 
 header {
   grid-area: header;
-  margin-bottom: 10px;
+  padding: 10px 0;
 }
 
 header ul {
@@ -253,11 +253,17 @@ header ul {
   font-size: 1em;
   gap: 20px;
   cursor: pointer;
+  margin-bottom: 15px;
 }
 
 header ul img {
-  width: 16px;
-  height: 16px;
+  width: 19px;
+  height: 19px;
+}
+
+header ul li:first-child {
+  font-family: "Sixtyfour", sans-serif;
+  font-size: 1.3em;
 }
 
 header ul li:nth-child(2) {
@@ -274,6 +280,22 @@ header li:hover {
   transform: scale(1.1);
 }
 
+@media (max-width: 769px) {
+  header {
+    margin-bottom: 0;
+  }
+  header ul {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0 5px;
+    margin: 20px 0 15px 0;
+  }
+  header ul li {
+    font-size: 1.1em;
+  }
+}
+
 /****** POSTS ******/
 
 .posts {
@@ -282,6 +304,7 @@ header li:hover {
   flex-direction: column;
   gap: 20px;
   padding: 15px;
+  margin-right: 5px;
   color: var(--text-muted);
   overflow-y: scroll;
   overflow-x: hidden;
@@ -347,8 +370,13 @@ header li:hover {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   border-radius: 15px;
   border: 1px solid rgb(255, 255, 255, 0.07);
-
   grid-area: members;
+}
+
+@media (max-width: 769px) {
+  .posts {
+    margin-top: 15px;
+  }
 }
 
 /******** INPUT SECTION ********/
@@ -356,7 +384,14 @@ header li:hover {
 .input-container,
 .subscribe-message-container {
   grid-area: input;
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 1.1em;
+  height: 45px;
+  margin-bottom: 3px;
+}
+
+.input-container input {
+  height: 100%;
 }
 
 .input-container input,
@@ -364,7 +399,6 @@ header li:hover {
   display: flex;
   align-items: center;
   border-radius: 10px;
-  height: 43px;
   padding: 5px 20px;
   width: 100%;
   border: none;
@@ -386,12 +420,14 @@ header li:hover {
 
 .input-container input::placeholder {
   color: var(--text-muted);
+  font-size: 1.2em;
 }
 
 .button-container,
 .subscribe-container {
   grid-area: button;
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-bottom: 3px;
 }
 
 .button-container button,
@@ -407,10 +443,62 @@ header li:hover {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
   font-weight: 600;
+  font-size: 1.05em;
 }
 
 .button-container button:hover,
 .subscribe-container button:hover {
   background-color: var(--primary-button-hover);
   transform: scale(1.05);
+}
+
+@media (max-width: 769px) {
+  .input-container,
+  .subscribe-message-container {
+    height: 60px;
+  }
+}
+
+/****** MEMBERS ******/
+
+.members {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 11px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin: 5px;
+  height: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.members::-webkit-scrollbar {
+  display: none;
+}
+
+.member {
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+  align-items: center;
+}
+
+.profile-image {
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 769px) {
+  .members {
+    flex-direction: row;
+    overflow-x: scroll;
+  }
+  .member p {
+    display: none;
+  }
 }

@@ -1,3 +1,12 @@
 <div class="members">
-
+    <% users.map((item) => { %>
+        <div class="member">
+            <% if (item.profileImage.length != 0) { %>
+                <img class="profile-image" src="<%= item.profileImage %>" alt="profile image">
+            <% } else { %>
+                <img class="profile-image" src="user.png" alt="profile image">
+            <% } %>
+            <p><%= item.username %></p>
+        </div>
+    <% }) %>
 </div>

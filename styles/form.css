@@ -1,0 +1,196 @@
+/* Set border-box on all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* COLORS */
+
+:root {
+  --background-color: #1b1c24;
+  --card-background: #262733;
+  --input-background: hsla(251, 20%, 56%, 0.1);
+  --primary-button: #4b1aa5;
+  --primary-button-hover: #5e31b1;
+  --text-color: #ececec;
+  --text-muted: #bcbfca;
+  --like-color: #a889fc;
+  --scrollbar-color: rgba(172, 142, 255, 0.148);
+  --scrollbar-color-hover: rgba(165, 134, 251, 0.338);
+}
+
+/* LAYOUT */
+
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: hsla(252, 40%, 29%, 1);
+  font-size: 16px;
+  line-height: normal;
+  background: linear-gradient(
+    90deg,
+    hsla(252, 40%, 29%, 1) 0%,
+    rgb(104, 78, 130) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(252, 40%, 29%, 1) 0%,
+    rgb(104, 78, 130) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(252, 40%, 29%, 1) 0%,
+    rgb(155, 109, 201) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", sans-serif;
+  color: var(--text-color);
+}
+
+/* FORM */
+
+form {
+  width: 400px;
+  height: 470px;
+
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgb(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 25px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  margin: 0 20px;
+}

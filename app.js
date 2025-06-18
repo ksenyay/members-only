@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const data = require("./utils/data");
+const userData = require("./utils/users");
 const path = require("path");
 
 // Initiate the app
@@ -18,8 +19,12 @@ app.use("/styles", express.static(path.join(__dirname, "styles")));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
-app.use("/", (req, res) => {
-  res.render("index", { postData: data, subscribed: true });
+app.get("/", (req, res) => {
+  res.render("index", { postData: data, subscribed: false, users: userData });
+});
+
+app.get("/sign-in", (req, res) => {
+  res.render("form");
 });
 
 // Starting the server
