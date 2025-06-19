@@ -139,8 +139,9 @@ table {
   --primary-button: #4b1aa5;
   --primary-button-hover: #5e31b1;
   --text-color: #ececec;
-  --text-muted: #bcbfca;
-  --like-color: #a889fc;
+  --text-muted: #cfd1d8;
+  --accent-color: #a889fc;
+  --accent-hover: #bca6f9;
   --scrollbar-color: rgba(172, 142, 255, 0.148);
   --scrollbar-color-hover: rgba(165, 134, 251, 0.338);
 }
@@ -182,15 +183,94 @@ body {
 /* FORM */
 
 form {
-  width: 400px;
-  height: 470px;
+  width: 500px;
+  height: 580px;
 
-  border-radius: 15px;
+  border-radius: 50px;
   background: rgba(255, 255, 255, 0.01);
   backdrop-filter: blur(20px);
   border: 1px solid rgb(255, 255, 255, 0.07);
   -webkit-backdrop-filter: blur(20px);
-  padding: 25px;
+  padding: 50px 65px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   margin: 0 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+form img:first-child {
+  width: 120px;
+  height: auto;
+  opacity: 0.7;
+}
+
+form input {
+  height: 45px;
+
+  padding: 5px 20px;
+  width: 100%;
+  border: none;
+  background-color: #ffffff00;
+  border-bottom: 1px solid white;
+  color: var(--text-color);
+}
+
+form input:focus {
+  outline: none;
+}
+
+form input::placeholder {
+  color: var(--text-color);
+  font-size: 1.2em;
+}
+
+form button {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--primary-button);
+  color: var(--text-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgb(255, 255, 255, 0.07);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  font-weight: 600;
+  font-size: 1.05em;
+}
+form button:hover {
+  background-color: var(--primary-button-hover);
+  transform: scale(1.05);
+}
+
+form img:last-child {
+  width: 35px;
+  height: auto;
+}
+
+form a {
+  font-weight: 600;
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+form a:hover {
+  color: var(--accent-hover);
+}
+
+p {
+  color: var(--text-muted);
+}
+
+form img:last-child {
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+form img:last-child:hover {
+  transform: scale(1.1);
 }
