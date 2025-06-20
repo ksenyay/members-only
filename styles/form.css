@@ -182,6 +182,12 @@ body {
 
 /* FORM */
 
+h1 {
+  font-size: 1.7em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
 form {
   width: 500px;
   height: 580px;
@@ -273,4 +279,21 @@ form img:last-child {
 
 form img:last-child:hover {
   transform: scale(1.1);
+}
+
+label {
+  align-self: center;
+}
+
+input[type="file"] {
+  align-self: center;
+  border: none;
+}
+
+input::file-selector-button {
+  font-weight: bold;
+  color: dodgerblue;
+  padding: 0.5em;
+  border: thin solid grey;
+  border-radius: 3px;
 }
