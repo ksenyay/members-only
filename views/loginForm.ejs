@@ -8,12 +8,12 @@
     <title>Log In</title>
 </head>
 <body>
-    <form action="">
+    <form action="/login" method="POST">
         <img src="/sign-in.png" alt="">
-        <input type="text" name="username" placeholder="Username" autocomplete="off">
-        <input type="password" name="password" placeholder="Password" autocomplete="off">
-        <p>Not a member?<a href="/signup"> Sign up</a></p>
-        <button>LOG IN</button>
+        <input type="text" name="username" placeholder="Username" autocomplete="off" required>
+        <input type="password" name="password" placeholder="Password" autocomplete="off" required>
+        <p>Not a member?<a href="/register"> Register</a></p>
+        <button type="submit">Log In</button>
         <p>Or continue with:</p>
         <img src="/google.png" alt="">
     </form>

@@ -3,10 +3,11 @@ const router = Router();
 const authRouter = require("./auth");
 const data = require("../utils/data");
 const userData = require("../utils/users");
+const User = require("../mongoose/schemas/users");
 
 router.use(authRouter);
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   req.session.visited = true; // Mark session as visited
   res.cookie("subscribed", "true", {
     // Set a signed cookie valid for 1 hour
@@ -14,7 +15,9 @@ router.get("/", (req, res) => {
     signed: true,
   });
 
-  res.render("index", { postData: data, subscribed: false, users: userData });
+  const users = await User.find();
+
+  res.render("index", { postData: data, users: users });
 });
 
 module.exports = router;

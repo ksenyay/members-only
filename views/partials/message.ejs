@@ -1,4 +1,4 @@
-<% if (subscribed === true) { %>
+<% if (currentUser && currentUser.isLogged === true) { %>
     <div class="input-container">
         <input type="text" placeholder="Write a message...">
     </div>

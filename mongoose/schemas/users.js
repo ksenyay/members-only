@@ -6,13 +6,13 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  displayName: String,
   password: {
     type: String,
     required: true,
   },
+  isLogged: Boolean,
 });
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("chat-users", userSchema);
 
 module.exports = User;

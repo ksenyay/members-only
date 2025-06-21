@@ -1,8 +1,8 @@
 <header>
     <ul>
         <li>CHATROOM</li>
-        <% if (subscribed === true) { %>
-            <li><img src="/logout.png" alt="Logout Icon"></li>
+        <% if (currentUser && currentUser.isLogged === true) { %>
+            <li><a href="/logout"><img src="/logout.png" alt="Logout Icon"></a></li>
         <% } %>
     </ul>
 </header>

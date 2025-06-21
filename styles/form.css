@@ -139,7 +139,7 @@ table {
   --primary-button: #4b1aa5;
   --primary-button-hover: #5e31b1;
   --text-color: #ececec;
-  --text-muted: #cfd1d8;
+  --text-muted: #bcbfca;
   --accent-color: #a889fc;
   --accent-hover: #bca6f9;
   --scrollbar-color: rgba(172, 142, 255, 0.148);
@@ -215,14 +215,18 @@ form img:first-child {
 }
 
 form input {
-  height: 45px;
-
+  height: 46px;
   padding: 5px 20px;
   width: 100%;
   border: none;
-  background-color: #ffffff00;
-  border-bottom: 1px solid white;
+  background-color: var(--input-background);
+  border: 1px solid rgb(255, 255, 255, 0.07);
+  border-radius: 10px;
   color: var(--text-color);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  margin: -5px 0;
+  font-size: 1.05em;
 }
 
 form input:focus {
@@ -230,13 +234,12 @@ form input:focus {
 }
 
 form input::placeholder {
-  color: var(--text-color);
-  font-size: 1.2em;
+  color: var(--text-muted);
 }
 
 form button {
   width: 100%;
-  height: 50px;
+  height: 45px;
   border-radius: 10px;
   border: none;
   background-color: var(--primary-button);
@@ -281,19 +284,43 @@ form img:last-child:hover {
   transform: scale(1.1);
 }
 
-label {
-  align-self: center;
+.add-picture {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 1px 10px;
 }
 
 input[type="file"] {
-  align-self: center;
   border: none;
+  background-color: #ffffff00;
+  box-shadow: none;
+  backdrop-filter: none;
+  margin-top: 2px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+label {
+  max-width: 130px;
+  min-width: 100px;
 }
 
 input::file-selector-button {
   font-weight: bold;
-  color: dodgerblue;
+  color: var(--accent-color);
   padding: 0.5em;
-  border: thin solid grey;
+  border: thin solid var(--accent-color);
   border-radius: 3px;
+  background-color: #ffffff00;
+}
+
+@media (max-width: 769px) {
+  form {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 30px;
+    border-radius: 0;
+  }
 }

@@ -1,7 +1,8 @@
 const passport = require("passport");
 const { Strategy } = require("passport-local");
-const User = require("../mongoose/users");
-const { comparePasswords } = require("../utils/password");
+const User = require("../mongoose/schemas/users");
+const { comparePasswords, hashPassword } = require("../utils/password");
+const session = require("express-session");
 
 // Store user ID in session
 passport.serializeUser((user, done) => {
@@ -28,6 +29,11 @@ module.exports = passport.use(
       if (!findUser) throw new Error("User not found");
       if (!comparePasswords(password, findUser.password))
         throw new Error("Bad credentials");
+
+      const updatedUser = await User.findOneAndUpdate(
+        { username },
+        { isLogged: true }
+      );
 
       done(null, findUser); // Login successful
     } catch (err) {
