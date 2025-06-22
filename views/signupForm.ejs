@@ -8,7 +8,7 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <form action="/register" method="POST"  id="create-user">
+    <form action="/register" method="POST"  id="create-user" enctype="multipart/form-data">
         <h1>Create an Account</h1>
         <input type="text" name="username" placeholder="Username" autocomplete="off" required>
         <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" required oninput="confirm_password.pattern = this.value">
@@ -16,7 +16,7 @@
 
         <div class="add-picture">
             <label for="profile-pic">Profile Image:</label>
-            <input type="file" name="profile_picture" id="profile-pic">
+            <input type="file" name="avatar" id="profile-pic" accept="image/*">
         </div>
         <button type="submit">Create</button>
     </form>

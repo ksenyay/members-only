@@ -2,6 +2,10 @@ const passport = require("passport");
 const User = require("../mongoose/schemas/users");
 const { hashPassword } = require("../utils/password");
 
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
 const get_login_form = (req, res) => {
   res.render("loginForm");
 };
@@ -23,25 +27,36 @@ const post_auth_user = (req, res, next) => {
   })(req, res, next);
 };
 
-const post_create_user = async (req, res) => {
-  console.log(req.body);
-  const hashedPass = hashPassword(req.body.password);
-  console.log(hashedPass);
+const post_create_user = [
+  upload.single("avatar"), // multer handles the file
+  async (req, res) => {
+    console.log(req.body);
 
-  const newUser = new User({
-    username: req.body.username.trim(),
-    password: hashedPass,
-  });
+    const hashedPass = await hashPassword(req.body.password); // make sure this is async
+    console.log(hashedPass);
 
-  try {
-    const savedUser = await newUser.save();
-    return res.redirect("/");
-  } catch (err) {
-    console.log(err);
-  }
+    const newUser = new User({
+      username: req.body.username.trim(),
+      password: hashedPass,
+    });
 
-  res.sendStatus(200);
-};
+    // Add avatar if provided
+    if (req.file) {
+      newUser.avatar = {
+        data: req.file.buffer,
+        contentType: req.file.mimetype,
+      };
+    }
+
+    try {
+      await newUser.save();
+      return res.redirect("/");
+    } catch (err) {
+      console.error(err);
+      return res.status(500).send("Error saving user");
+    }
+  },
+];
 
 const get_logout = (req, res) => {
   if (!req.user) return res.sendStatus(401);
