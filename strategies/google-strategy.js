@@ -1,6 +1,6 @@
 const passport = require("passport");
 const { Strategy } = require("passport-google-oauth20");
-const GoogleUser = require("../mongoose/schemas/googleUser");
+const User = require("../mongoose/schemas/users");
 require("dotenv").config();
 
 // This one is used after done() is called in authorize function
@@ -12,7 +12,7 @@ passport.serializeUser((user, done) => {
 // id is what i pass in done() for serializeUser()
 passport.deserializeUser(async (id, done) => {
   try {
-    const findUser = await GoogleUser.findById(id);
+    const findUser = await User.findById(id);
     return findUser ? done(null, findUser) : done(null, null);
   } catch (err) {
     console.log(err);
@@ -29,16 +29,21 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        let findUser = await GoogleUser.findOne({ googleId: profile.id });
+        let findUser = await User.findOne({ googleId: profile.id });
 
         if (!findUser) {
-          findUser = await GoogleUser.create({
-            name: profile.displayName,
+          findUser = await User.create({
+            username: profile.name.givenName.toLowerCase(),
             googleId: profile.id,
-            email: profile.emails?.[0]?.value,
-            picture: profile.photos?.[0]?.value,
+            avatarGoogle: profile.photos?.[0]?.value,
+            authWith: "google",
           });
         }
+
+        await User.findOneAndUpdate(
+          { googleId: profile.id },
+          { isLogged: true }
+        );
 
         return done(null, findUser);
       } catch (err) {

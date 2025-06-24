@@ -8,13 +8,19 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
   },
   avatar: {
     data: Buffer,
     contentType: String,
   },
+  avatarGoogle: String,
   isLogged: Boolean,
+  googleId: {
+    type: String,
+    required: false,
+    unique: true,
+  },
+  authWith: { type: String, required: true },
 });
 
 const User = mongoose.model("chat-users", userSchema);

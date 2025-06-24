@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const authRouter = require("./auth");
 const postsRouter = require("./posts");
+const googleRouter = require("./googleAuth");
 
 const convertDate = require("../utils/dateConverter");
 
@@ -11,6 +12,7 @@ const Post = require("../mongoose/schemas/posts");
 
 router.use(authRouter);
 router.use(postsRouter);
+router.use(googleRouter);
 
 router.get("/", async (req, res) => {
   req.session.visited = true;
@@ -41,6 +43,8 @@ router.get("/", async (req, res) => {
       return {
         username: user.username,
         profileImage,
+        authWith: user.authWith,
+        avatarGoogle: user.avatarGoogle,
       };
     });
 

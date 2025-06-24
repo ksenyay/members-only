@@ -51,8 +51,9 @@ const post_create_user = [
     const hashedPass = hashPassword(data.password);
 
     const newUser = new User({
-      username: data.username,
+      username: data.username.toLowerCase(),
       password: hashedPass,
+      authWith: "local",
     });
     if (req.file) {
       newUser.avatar = {

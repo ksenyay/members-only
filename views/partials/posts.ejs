@@ -3,10 +3,17 @@
     <div class="post">
       <div class="author">
         <% 
-          const matchedUser = users.find(user => user.username === item.username);
-          const profileImage = matchedUser?.profileImage;
+          var matchedUser = users.find(user => user.username === item.username);
+          var profileImage = matchedUser?.profileImage;
+          var profileImageGoogle = matchedUser?.avatarGoogle;
         %>
-        <img class="profile-image" src="<%= profileImage || 'user.png' %>" alt="profile image">
+        <% if (matchedUser && matchedUser.authWith === "local") { %>
+          <img class="profile-image" src="<%= profileImage || 'user.png' %>" alt="profile image">
+        <% } else if (matchedUser &&  matchedUser.authWith === "google") { %>
+          <img class="profile-image" src="<%= profileImageGoogle || 'user.png' %>" alt="profile image">
+        <% } else { %>
+          <img class="profile-image" src='user.png' %>" alt="profile image">
+        <% } %>
         <p id="username_post">@<%= item.username %></p>
       </div>
       <p class="content"><%= item.description %></p>
@@ -47,7 +54,6 @@ document.querySelectorAll(".like-button").forEach((btn) => {
       // Swap the image source based on like status
       btn.src = result.liked ? "/heart_liked.png" : "/heart.png";
 
-      // Optional: update like count in the DOM too
       const likeCountElem = btn.nextElementSibling;
       if (likeCountElem) {
         likeCountElem.textContent = result.likes;

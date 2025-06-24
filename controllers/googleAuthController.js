@@ -1,8 +1,8 @@
 const passport = require("passport");
 
-const get_google_auth = (req, res) => {
-  passport.authenticate("google", { scope: ["profile"] });
-};
+const get_google_auth = passport.authenticate("google", {
+  scope: ["profile"],
+});
 
 const get_google_redirect = [
   passport.authenticate("google", {
@@ -13,5 +13,4 @@ const get_google_redirect = [
     res.redirect("/");
   },
 ];
-
 module.exports = { get_google_auth, get_google_redirect };

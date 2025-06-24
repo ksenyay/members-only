@@ -19,7 +19,7 @@
         <p>Not a member?<a href="/register"> Register</a></p>
         <button type="submit">Log In</button>
         <p>Or continue with:</p>
-        <img src="/google.png" alt="">
+        <img src="/google.png" onclick="authGoogle()" alt="">
     </form>
 </body>
 </html>
@@ -44,4 +44,8 @@
             }
         });
     })
+
+    function authGoogle() {
+        window.location.href = '/auth/google'
+    }
 </script>
