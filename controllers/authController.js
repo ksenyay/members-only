@@ -1,11 +1,18 @@
 const passport = require("passport");
 const User = require("../mongoose/schemas/users");
 const { hashPassword } = require("../utils/password");
-const flash = require("connect-flash");
 
+// For processing photos
 const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+
+const {
+  validationResult,
+  checkSchema,
+  matchedData,
+} = require("express-validator");
+const userValidationSchema = require("../utils/userValidationSchema");
 
 const get_login_form = (req, res) => {
   res.render("loginForm");
@@ -33,11 +40,18 @@ const post_auth_user = (req, res, next) => {
 
 const post_create_user = [
   upload.single("avatar"),
+  checkSchema(userValidationSchema),
   async (req, res) => {
-    const hashedPass = hashPassword(req.body.password);
+    const result = validationResult(req);
+
+    if (!result.isEmpty()) return res.send(result.array());
+
+    const data = matchedData(req);
+
+    const hashedPass = hashPassword(data.password);
 
     const newUser = new User({
-      username: req.body.username.trim(),
+      username: data.username,
       password: hashedPass,
     });
     if (req.file) {

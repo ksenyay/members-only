@@ -5,7 +5,9 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const router = require("./routes/index");
 const passport = require("passport");
+
 require("./strategies/local-strategy");
+require("./strategies/google-strategy");
 
 const flash = require("connect-flash");
 
