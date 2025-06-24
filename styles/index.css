@@ -1,6 +1,7 @@
 /* FONTS */
 
 @import url("https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 .sixtyfour {
   font-family: "Sixtyfour", sans-serif;
@@ -8,6 +9,14 @@
   font-weight: 400;
   font-style: normal;
   font-variation-settings: "BLED" 0, "SCAN" 0;
+}
+
+.open-sans {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 /* Set border-box on all elements */
@@ -151,8 +160,9 @@ table {
   --primary-button: #4b1aa5;
   --primary-button-hover: #5e31b1;
   --text-color: #ececec;
-  --text-muted: #bcbfca;
+  --text-muted: #d9dbe2;
   --like-color: #a889fc;
+  --username-color: #ccb8ff;
   --scrollbar-color: rgba(172, 142, 255, 0.148);
   --scrollbar-color-hover: rgba(165, 134, 251, 0.338);
 }
@@ -167,6 +177,7 @@ body {
   background: hsla(252, 40%, 29%, 1);
   font-size: 16px;
   line-height: normal;
+  font-family: "Open Sans", sans-serif;
   background: linear-gradient(
     90deg,
     hsla(252, 40%, 29%, 1) 0%,
@@ -302,7 +313,7 @@ header li:hover {
   grid-area: posts;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
   padding: 15px;
   margin-right: 5px;
   color: var(--text-muted);
@@ -325,27 +336,24 @@ header li:hover {
   background-color: var(--scrollbar-color-hover);
   cursor: pointer;
 }
-.posts h1 {
-  font-size: 1.5em;
-  color: var(--text-color);
-}
 
 .post {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
-.post h2 {
-  color: var(--text-color);
-  font-size: 1.3em;
+.content {
+  font-size: 1.1em;
 }
 
 .author {
   display: flex;
   flex-direction: row;
-  gap: 10px;
-  font-size: 0.9em;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1em;
+  color: var(--text-color);
 }
 
 .like {
@@ -366,11 +374,20 @@ header li:hover {
   transform: scale(1.2);
 }
 
+.like p:last-child {
+  margin-left: 10px;
+}
+
 .members {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   border-radius: 15px;
   border: 1px solid rgb(255, 255, 255, 0.07);
   grid-area: members;
+}
+
+.author img {
+  width: 40px;
+  height: auto;
 }
 
 @media (max-width: 769px) {
@@ -472,6 +489,7 @@ header li:hover {
   height: 100%;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  font-weight: 600;
 }
 
 .members::-webkit-scrollbar {
@@ -501,4 +519,9 @@ header li:hover {
   .member p {
     display: none;
   }
+}
+
+#username_post {
+  font-weight: 600;
+  color: var(--username-color);
 }

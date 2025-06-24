@@ -1,6 +1,6 @@
 <% if (currentUser && currentUser.isLogged === true) { %>
     <div class="input-container">
-        <input type="text" id="postInput" placeholder="Write a message...">
+        <input type="text" id="postInput" minlength="1" maxlength="500" placeholder="Write a message...">
     </div>
     <div class="button-container">
         <button id="postButton">Post</button>

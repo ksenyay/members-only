@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/form.css">
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="chat.png">
     <title>Log In</title>
 </head>
 <body>
     <form action="/login" method="POST">
         <img src="/sign-in.png" alt="">
         <input type="text" name="username" placeholder="Username" autocomplete="off" required>
-        <input type="password" name="password" placeholder="Password" autocomplete="off" required>
+        <div class="pass-container">
+            <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" minlength="6" maxlength="64" required oninput="confirm_password.pattern = this.value">
+            <img src="eye.png" class="show-password" alt="">
+        </div>
         <p>Not a member?<a href="/register"> Register</a></p>
         <button type="submit">Log In</button>
         <p>Or continue with:</p>
@@ -19,3 +22,17 @@
     </form>
 </body>
 </html>
+<script>
+    const toggle = document.querySelector(".show-password")
+    toggle.addEventListener("click", () => {
+        const input = toggle.previousElementSibling;
+
+        if (input.type === "password") {
+            input.type = "text";
+            toggle.src = "hidden.png"; 
+        } else {
+            input.type = "password";
+            toggle.src = "eye.png";
+        }
+    });
+</script>

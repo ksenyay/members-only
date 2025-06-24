@@ -18,7 +18,6 @@ const post_auth_user = (req, res, next) => {
   passport.authenticate("local", (err, user) => {
     if (err) return next(err);
     if (!user) return res.sendStatus(401);
-    console.log();
 
     req.logIn(user, (err) => {
       if (err) return next(err);
@@ -28,19 +27,14 @@ const post_auth_user = (req, res, next) => {
 };
 
 const post_create_user = [
-  upload.single("avatar"), // multer handles the file
+  upload.single("avatar"),
   async (req, res) => {
-    console.log(req.body);
-
-    const hashedPass = await hashPassword(req.body.password); // make sure this is async
-    console.log(hashedPass);
+    const hashedPass = hashPassword(req.body.password);
 
     const newUser = new User({
       username: req.body.username.trim(),
       password: hashedPass,
     });
-
-    // Add avatar if provided
     if (req.file) {
       newUser.avatar = {
         data: req.file.buffer,
@@ -50,10 +44,10 @@ const post_create_user = [
 
     try {
       await newUser.save();
-      return res.redirect("/");
+      res.redirect("/login");
     } catch (err) {
       console.error(err);
-      return res.status(500).send("Error saving user");
+      return res.status(500).send("Error saving user", err);
     }
   },
 ];

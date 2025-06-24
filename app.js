@@ -5,9 +5,11 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const router = require("./routes/index");
 const passport = require("passport");
+require("./strategies/local-strategy");
+
+// Data
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
-require("./strategies/local-strategy");
 
 // Initiate the app
 const app = express();
