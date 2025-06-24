@@ -10,7 +10,8 @@
 <body>
     <form action="/login" method="POST">
         <img src="/sign-in.png" alt="">
-        <input type="text" name="username" placeholder="Username" autocomplete="off" required>
+        <p class="error-message"><%= error[0] %></p>
+        <input type="text" id="logic_username" name="username" placeholder="Username" autocomplete="off" required>
         <div class="pass-container">
             <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" minlength="6" maxlength="64" required oninput="confirm_password.pattern = this.value">
             <img src="eye.png" class="show-password" alt="">
@@ -35,4 +36,12 @@
             toggle.src = "eye.png";
         }
     });
+
+    document.querySelectorAll("input").forEach((item) => {
+        item.addEventListener("keydown", function (e) {
+            if (e.key === " ") {
+                e.preventDefault(); 
+            }
+        });
+    })
 </script>

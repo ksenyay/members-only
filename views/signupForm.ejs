@@ -28,11 +28,13 @@
 </body>
 </html>
 <script>
-    document.getElementById("username").addEventListener("keydown", function (e) {
-        if (e.key === " ") {
-            e.preventDefault(); 
-        }
-    });
+ document.querySelectorAll("input").forEach((item) => {
+        item.addEventListener("keydown", function (e) {
+            if (e.key === " ") {
+                e.preventDefault(); 
+            }
+        });
+    })
 
     const toggles = document.querySelectorAll(".show-password");
 

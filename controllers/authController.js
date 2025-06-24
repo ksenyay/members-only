@@ -1,6 +1,7 @@
 const passport = require("passport");
 const User = require("../mongoose/schemas/users");
 const { hashPassword } = require("../utils/password");
+const flash = require("connect-flash");
 
 const multer = require("multer");
 const storage = multer.memoryStorage();
@@ -15,9 +16,13 @@ const get_register_form = (req, res) => {
 };
 
 const post_auth_user = (req, res, next) => {
-  passport.authenticate("local", (err, user) => {
+  passport.authenticate("local", (err, user, info) => {
     if (err) return next(err);
-    if (!user) return res.sendStatus(401);
+
+    if (!user) {
+      req.flash("error", info?.message || "Unauthorized");
+      return res.redirect("/login");
+    }
 
     req.logIn(user, (err) => {
       if (err) return next(err);

@@ -7,6 +7,8 @@ const router = require("./routes/index");
 const passport = require("passport");
 require("./strategies/local-strategy");
 
+const flash = require("connect-flash");
+
 // Data
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
@@ -41,6 +43,13 @@ app.use(
 );
 
 // Passport
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.error = req.flash("error");
+  next();
+});
+
 app.use(passport.initialize()); // Initialize Passport middleware
 app.use(passport.session()); // Enable persistent login sessions
 

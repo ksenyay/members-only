@@ -26,18 +26,16 @@ module.exports = passport.use(
     try {
       const findUser = await User.findOne({ username });
 
-      if (!findUser) throw new Error("User not found");
-      if (!comparePasswords(password, findUser.password))
-        throw new Error("Bad credentials");
+      if (!findUser) return done(null, false, { message: "User not found" });
 
-      const updatedUser = await User.findOneAndUpdate(
-        { username },
-        { isLogged: true }
-      );
+      const isValid = await comparePasswords(password, findUser.password);
+      if (!isValid) return done(null, false, { message: "Incorrect password" });
 
-      done(null, findUser); // Login successful
+      await User.findOneAndUpdate({ username }, { isLogged: true });
+
+      return done(null, findUser);
     } catch (err) {
-      done(err, null);
+      return done(err);
     }
   })
 );
