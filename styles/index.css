@@ -244,7 +244,7 @@ main {
       "input input"
       "button button";
 
-    grid-template-rows: 50px 60px 1fr 55px 55px;
+    grid-template-rows: 50px 60px auto 55px 55px;
     gap: 0;
     border-radius: 0;
   }
@@ -394,6 +394,7 @@ header li:hover {
 @media (max-width: 769px) {
   .posts {
     margin-top: 15px;
+    height: fit-content;
   }
 }
 
