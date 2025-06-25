@@ -473,10 +473,14 @@ header li:hover {
 @media (max-width: 769px) {
   .input-container,
   .subscribe-message-container {
-    height: 45px;
+    height: 50px;
+    position: fixed;
+    width: 100%;
   }
   .button-container {
-    height: 40px;
+    height: 45px;
+    position: fixed;
+    width: 100%;
   }
 }
 
