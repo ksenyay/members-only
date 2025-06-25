@@ -474,14 +474,28 @@ header li:hover {
 @media (max-width: 769px) {
   .input-container,
   .subscribe-message-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     height: 50px;
-    position: fixed;
-    width: 100%;
+    background-color: white;
+    z-index: 999;
+    padding: 5px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* optional */
   }
+
   .button-container {
-    height: 45px;
     position: fixed;
+    bottom: 50px; /* sits above input */
     width: 100%;
+    height: 45px;
+    background-color: white;
+    z-index: 999;
+    padding: 5px;
+  }
+
+  body {
+    padding-bottom: 100px; /* Prevent input from overlapping content */
   }
 }
 
