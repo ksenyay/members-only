@@ -246,6 +246,7 @@ main {
 
     grid-template-rows: 80px 70px 1fr 70px 70px;
     gap: 0;
+    border-radius: 0;
   }
 }
 
