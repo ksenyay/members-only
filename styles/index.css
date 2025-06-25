@@ -244,7 +244,7 @@ main {
       "input input"
       "button button";
 
-    grid-template-rows: 80px 70px 1fr 70px 70px;
+    grid-template-rows: 50px 60px 1fr 55px 55px;
     gap: 0;
     border-radius: 0;
   }
@@ -301,7 +301,7 @@ header li:hover {
     align-items: center;
     justify-content: start;
     padding: 0 5px;
-    margin: 20px 0 15px 0;
+    margin: 5px 0 5px 0;
   }
   header ul li {
     font-size: 1.1em;
@@ -473,7 +473,10 @@ header li:hover {
 @media (max-width: 769px) {
   .input-container,
   .subscribe-message-container {
-    height: 60px;
+    height: 45px;
+  }
+  .button-container {
+    height: 40px;
   }
 }
 
